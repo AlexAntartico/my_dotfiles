@@ -20,7 +20,8 @@ alias upme='sudo dnf5 upgrade -y'  # me being lazy
 alias py_gitignore='curl https://raw.githubusercontent.com/github/gitignore/main/Python.gitignore > ./.gitignore'  # me being super practical
 alias top='/usr/bin/htop'
 alias less='less -N'  # I like my less command w/line numbers
-alias cat-'/usr/bin/bat'  # Im using bat
+alias cat='/usr/bin/bat'  # bat is like a less command but with colors
+alias grep='/usr/bin/grep --color=auto -n'
 
 export PS1="\t \[\e[35m\][\[\e[m\]\[\e[36m\]\u\[\e[m\]@\[\e[34m\]\h\[\e[m\]\[\e[35m\]]\[\e[m\] \[\e[33m\]\w\[\e[m\]\n"  # I like this format, refer to https://ezprompt.net/
 
