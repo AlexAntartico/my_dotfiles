@@ -209,5 +209,5 @@ set splitright
 " ---------------
 " For YAML, Markdown, HTML, CSS, and JavaScript files, set local indentation
 " to 2 spaces for tabstop, softtabstop, and shiftwidth, and use spaces for tabs.
-autocmd FileType yaml,markdown,html,css,javascript setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType yaml,markdown,html,css,javascript,c setlocal ts=2 sts=2 sw=2 expandtab
 
