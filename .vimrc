@@ -1,5 +1,5 @@
-" Custom VIM settings
 " -------------------
+" Custom VIM settings
 " -------------------
 " May 2025
 " Leader key is a prefix for custom shortcuts. Here it's set to comma (,).
@@ -31,7 +31,7 @@ set softtabstop=4
 set wrap
 
 " Search settings
-"-----------------
+" -----------------
 " Highlight all occurrences of a search pattern.
 set hlsearch
 " Ignore case when searching, unless the search pattern contains an uppercase letter.
@@ -173,7 +173,7 @@ set laststatus=2
 " %m: Modified flag ('[+]' if modified)
 " %r: Read-only flag ('[RO]')
 " %h: Help buffer flag ('[HELP]')
-" %w: Preview window flag ('[Preview]')
+" %w: Preview window flag ('[Preview]'
 " %=: Separator, pushes items to the right
 " %{&ff}: File format (e.g., unix, dos)
 " %Y: File type (e.g., vim, python)
@@ -209,5 +209,5 @@ set splitright
 " ---------------
 " For YAML, Markdown, HTML, CSS, and JavaScript files, set local indentation
 " to 2 spaces for tabstop, softtabstop, and shiftwidth, and use spaces for tabs.
-autocmd FileType yaml,markdown,html,css,javascript,c setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType yaml,markdown,html,css,javascript,c,shell,bash setlocal ts=2 sts=2 sw=2 expandtab
 
