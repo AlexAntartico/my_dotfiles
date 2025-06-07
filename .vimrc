@@ -4,6 +4,11 @@
 " May 2025
 " Leader key is a prefix for custom shortcuts. Here it's set to comma (,).
 " Example: If you map <leader>w to save, you'd press ,w.
+"
+" To copy past from VIM to the system clipboard, use:
+" Select text with mouse and right click to copy.
+" In the external application, paste with middle button
+"
 let mapleader = ","
 
 " Vim-markdown plugin settings
@@ -173,7 +178,7 @@ set laststatus=2
 " %m: Modified flag ('[+]' if modified)
 " %r: Read-only flag ('[RO]')
 " %h: Help buffer flag ('[HELP]')
-" %w: Preview window flag ('[Preview]'
+" %w: Preview window flag ('[Preview]')
 " %=: Separator, pushes items to the right
 " %{&ff}: File format (e.g., unix, dos)
 " %Y: File type (e.g., vim, python)
