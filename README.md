@@ -1,6 +1,6 @@
 # my_dotfiles
 
-My personal dotfiles for configuring my development environment. This repo includes configuration for Vim, Bash aliases, and scripts to manage and back up my dotfiles.
+My personal dotfiles for configuring my development environment. This repo includes configuration for Vim, Bash aliases, and scripts to manage and back up my dotfiles. The purpose of this file is to have a repo  with my personal preferences, you may use these as the base for your own purposes. 
 
 ## Contents
 
@@ -23,6 +23,9 @@ My personal dotfiles for configuring my development environment. This repo inclu
 
 - **Vim-Markdown Plugin Settings:**  
   - Disables concealing of markdown syntax and code blocks for better readability.
+  - 
+- **Local indentation settings**
+- Applied to my most used languages.
 
 [View .vimrc](https://github.com/AlexAntartico/my_dotfiles/blob/main/.vimrc)
 
@@ -65,6 +68,15 @@ My personal dotfiles for configuring my development environment. This repo inclu
   - Copies only newer versions of files (using `cp -uv`).
   - Skips missing files and provides informative output.
   - Easy to extend for additional dotfiles.
+
+
+### 4. `update_debian.sh` (NEW)
+
+- Bash script to update and clean APT and Snap packages on Debian-based systems.
+- Logs actions to /var/log with a timestamped filename.
+- Must be run as root (with sudo).
+- Provides on-screen and log feedback about the update process.
+
 
 [View dotfiles_to_repo.sh](https://github.com/AlexAntartico/my_dotfiles/blob/main/dotfiles_to_repo.sh)
 
