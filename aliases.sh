@@ -1,3 +1,4 @@
+# An alias is a shortcut or a custom command you can set up to represent a series of commands or a more complex command
 # You should know these commands before committing to adopt their shortened version
 # If  you need to run the original commands just do so by escaping the command, ie
 # df here will run a df -hT but to run original df, do:
