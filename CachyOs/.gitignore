@@ -16,3 +16,5 @@ Thumbs.db
 # Sensitive directories (never include these by accident)
 .ssh/
 .gnupg/
+.cache/
+.local/share/
