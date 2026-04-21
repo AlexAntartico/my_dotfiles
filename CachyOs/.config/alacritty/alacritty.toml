@@ -179,7 +179,7 @@ action = "ResetFontSize"
 # --- Shell: auto-attach or create Tmux session ----------------
 
 [terminal.shell]
-program = "/bin/bash"
+program = "/usr/bin/zsh"
 args = ["-c", "tmux new-session -A -s main"]
 
 [general]

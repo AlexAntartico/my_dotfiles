@@ -1,0 +1,18 @@
+# Backup files
+*.bak
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Shell history (just in case)
+.zsh_history
+.bash_history
+
+# Local environment variables
+.env
+.env.local
+
+# Sensitive directories (never include these by accident)
+.ssh/
+.gnupg/
