@@ -1,6 +1,7 @@
 # location: this is usuall at ~/.config/alacritty
 # made with use of ai and intended to be used with tmux
 
+
 [env]
 TERM = "xterm-256color"
 WINIT_X11_SCALE_FACTOR = "1"
@@ -185,3 +186,5 @@ args = ["-c", "tmux new-session -A -s main"]
 [general]
 live_config_reload = true
 working_directory = "None"
+import = ["~/.config/alacritty/themes/night-contrast.toml"]
+

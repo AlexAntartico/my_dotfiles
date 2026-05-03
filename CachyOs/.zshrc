@@ -9,9 +9,13 @@ unset POWERLEVEL9K_CONFIG_FILE
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=off
 
 # ── Environment ───────────────────────────────────────────
+typeset -U path  # deduplicate PATH entries automatically
 export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent.socket
 export EDITOR=nvim
-export PATH="$HOME/.local/bin:$PATH"
+path=("$HOME/.local/bin" $path)
+
+# ── Rust (rustup) ─────────────────────────────────────────
+[[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
 
 # ── Starship prompt ───────────────────────────────────────
 eval "$(starship init zsh)"
@@ -52,3 +56,8 @@ setopt SHARE_HISTORY
 HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.zsh_history
+
+# Added by LM Studio CLI (lms)
+path+=("/home/eddieg/.lmstudio/bin")
+# End of LM Studio CLI section
+
