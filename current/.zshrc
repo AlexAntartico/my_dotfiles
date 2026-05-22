@@ -61,3 +61,6 @@ HISTFILE=~/.zsh_history
 path+=("/home/eddieg/.lmstudio/bin")
 # End of LM Studio CLI section
 
+
+# NPM global bin (added by Qwen Code installer)
+export PATH="$HOME/.npm-global/bin:$PATH"

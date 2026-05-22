@@ -1,108 +1,72 @@
 # my_dotfiles
 
-My personal dotfiles for configuring my development environment. This repo includes configuration for Vim, Bash aliases, and scripts to manage and back up my dotfiles. The purpose of this file is to have a repo  with my personal preferences, you may use these as the base for your own purposes. 
+Personal dotfiles, organized by life stage. The active setup is **CachyOS** with a symlink-based install. Older configs from Fedora and Linux Mint days are preserved under `legacy/` for reference.
 
-## Contents
+## Layout
 
-### 1. `.vimrc` – Vim Configuration & Plugins
+```
+my_dotfiles/
+├── current/           Active CachyOS setup — symlinked into $HOME
+│   ├── .zshrc
+│   ├── .tmux.conf
+│   ├── .config/
+│   │   ├── alacritty/
+│   │   ├── starship.toml
+│   │   └── zsh/cachyos-config.zsh   (local override of /usr/share/.../cachyos-config.zsh)
+│   ├── install.zsh    Run this to set up symlinks
+│   └── README.md
+│
+├── shared/            Cross-distro configs (symlinked alongside current/)
+│   └── .vimrc
+│
+├── scripts/           Standalone utility scripts
+│   ├── update_debian.sh    apt/snap/flatpak updater with logging
+│   ├── ssformater.sh       Cleans Linux Mint screenshot filenames
+│   └── dotfiles_to_repo.sh Legacy copy-based backup (kept for reference)
+│
+└── legacy/            Older distro-specific configs, not actively used
+    ├── fedora/
+    │   └── aliases.sh      Bash aliases, dnf5, custom PS1, fastfetch
+    └── mint/
+        ├── kitty.conf
+        └── color.ini       Tokyo Night palette for kitty
+```
 
-- **Custom Settings:**  
-  - Sets leader key to `,` for custom shortcuts.
-  - Line numbers, smart indentation, tab spacing set to 4 spaces.
-  - Enables line wrapping, syntax highlighting, mouse support, and cursor line highlighting.
-  - Sets UTF-8 encoding and a custom command-line prompt style.
+## Installation
 
-- **Search and Editing:**  
-  - Highlights search results, ignores case (unless uppercase in search), and shows matching brackets.
-  - Smart auto-indenting, auto-completion features, and plugins for enhanced editing.
+```zsh
+git clone https://github.com/AlexAntartico/my_dotfiles.git ~/Projects/my_dotfiles
+cd ~/Projects/my_dotfiles
+chmod +x install.zsh
+./install.zsh
+```
 
-- **Plugins (managed by vim-plug):**  
-  - `vim-plug` for plugin management.
-  - `davidhalter/jedi-vim` for Python development (Jedi-based autocompletion).
-  - Additional plugins may be defined (see the full `.vimrc` for more).
+The install script walks `current/` and `shared/`, creating symlinks under `$HOME` that mirror the directory structure. If a file already exists at the destination, it's backed up to `<file>.bak` before the symlink is created. Re-running the script is safe — files already correctly linked are skipped.
 
-- **Vim-Markdown Plugin Settings:**  
-  - Disables concealing of markdown syntax and code blocks for better readability.
-  - 
-- **Local indentation settings**
-- Applied to my most used languages.
+## Why two zsh config files?
 
-[View .vimrc](https://github.com/AlexAntartico/my_dotfiles/blob/main/.vimrc)
+CachyOS ships a system-wide oh-my-zsh + plugin config at `/usr/share/cachyos-zsh-config/cachyos-config.zsh`. Editing it directly would be wiped on the next `pacman -Syu`. Instead, this repo keeps a local copy at `current/.config/zsh/cachyos-config.zsh` with Powerlevel10k disabled (since this setup uses Starship). The top-level `.zshrc` sources the local copy, not the system one.
 
----
+This is two files by design, not by accident.
 
-### 2. `aliases.sh` – Bash Aliases and Prompt Customization
+## Stack
 
-- **Purpose:**  
-  Provides shorthand aliases for common commands to increase efficiency.
+- **Shell:** zsh + oh-my-zsh + Starship prompt
+- **Terminal:** Alacritty (with tmux auto-attach)
+- **Multiplexer:** tmux with TPM (resurrect + continuum)
+- **Editor:** Vim with vim-plug
+- **Extras:** zoxide, fzf, lsd, btop, lazygit
 
-- **Highlights:**  
-  - File and directory listing enhancements (`ll`, `la`, `ld`).
-  - Shorthand for moving up directories (`d1`, `d2`, etc.).
-  - System info and upgrade (`df`, `upme`, `top`).
-  - Python .gitignore downloader (`py_gitignore`).
-  - Enhanced `less` and `cat` (`bat`) for color and line numbers.
-  - Colored grep output.
-  - Reloads `.bashrc` with `reloadb`.
-  - Customizes the shell prompt (PS1) for better visibility (time, user, host, path).
-  - Invokes `fastfetch` for a summary at shell startup.
+## Scripts
 
-[View aliases.sh](https://github.com/AlexAntartico/my_dotfiles/blob/main/aliases.sh)
+`scripts/update_debian.sh` — APT + Snap + Flatpak updater with timestamped logging to `/var/log`. Must be run as root. Useful on Debian/Mint machines.
 
----
+`scripts/ssformater.sh` — Renames screenshot files: strips Linux Mint's leading/trailing single quotes and replaces spaces with underscores. Run from the directory containing the screenshots.
 
-### 3. `dotfiles_to_repo.sh` – Dotfiles Backup Script
-
-- **Purpose:**  
-  Script to copy selected dotfiles from your home directory to this repository for backup and synchronization.
-
-- **Usage:**
-  1. Edit the "USER CONFIGURATION" section to define which files to back up and the repository path.
-  2. Make the script executable:  
-     `chmod +x dotfiles_to_repo.sh`
-  3. Run the script:  
-     `./dotfiles_to_repo.sh`
-
-- **Features:**  
-  - Checks if repo path exists and creates it if needed.
-  - Copies only newer versions of files (using `cp -uv`).
-  - Skips missing files and provides informative output.
-  - Easy to extend for additional dotfiles.
-
-
-### 4. `update_debian.sh` (NEW)
-
-- Bash script to update and clean APT and Snap packages on Debian-based systems.
-- Logs actions to /var/log with a timestamped filename.
-- Must be run as root (with sudo).
-- Provides on-screen and log feedback about the update process.
-
-
-[View dotfiles_to_repo.sh](https://github.com/AlexAntartico/my_dotfiles/blob/main/dotfiles_to_repo.sh)
-
----
-
-## How to Use
-
-1. Clone this repo to your machine:  
-   `git clone https://github.com/AlexAntartico/my_dotfiles.git`
-
-2. Review and edit the Bash and Vim config files to match your preferences.
-
-3. Use the provided script to back up your dotfiles or to synchronize them across multiple systems.
-
-4. Source your `aliases.sh` file from your `.bashrc` or `.bash_profile` for aliases and prompt customization:
-   ```sh
-   source ~/my_dotfiles/aliases.sh
-   ```
-5. Install Vim Plugins by downloading files from [https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim](here), then open Vim and running:
-   ```sh
-   :PlugInstall
-   ```
-
----
+`scripts/dotfiles_to_repo.sh` — Older copy-based backup script. Superseded by the symlink approach in `install.zsh` but kept around in case it's useful on a machine where symlinks aren't viable.
 
 ## Notes
-- Some commands require additional tools (e.g., htop, bat, fastfetch). Install them using your package manager as needed.
-- Customize the script and config files to suit your environment.
-- View the full list of managed files and scripts in the GitHub code search.
+
+- The `current/` files assume CachyOS packages are installed (`starship`, `zoxide`, `lsd`, `btop`, `fzf`, `tmux`, `zsh-syntax-highlighting`, `zsh-autosuggestions`, `pkgfile`, `oh-my-zsh-git`). Most of these are in the CachyOS default repos.
+- For Vim plugins, install vim-plug from <https://github.com/junegunn/vim-plug>, then run `:PlugInstall` inside Vim.
+- The `.gitignore` in `current/` excludes shell history, `.ssh/`, `.gnupg/`, and `.cache/` — review before committing if you add new files.
