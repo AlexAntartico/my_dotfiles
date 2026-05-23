@@ -36,7 +36,7 @@ alias la='lsd -lrha'
 alias top='btop'
 alias pseint='/opt/pseint/pseint'
 alias rldshell='source ~/.zshrc'
-alias sshadd='ssh-add -A 2>/dev/null || ssh-add ~/.ssh/id_ed25519 ~/.ssh/id_rsa 2>/dev/null; ssh-add -l'
+alias sshadd='ssh-add -A && ssh-add -l'
 
 alias lg='lazygit'
 
@@ -61,6 +61,5 @@ HISTFILE=~/.zsh_history
 path+=("$HOME/.lmstudio/bin")
 # End of LM Studio CLI section
 
-
 # NPM global bin (added by Qwen Code installer)
-export PATH="$HOME/.npm-global/bin:$PATH"
+export PATH="$PATH:$HOME/.npm-global/bin"
