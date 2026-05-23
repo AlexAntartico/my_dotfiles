@@ -58,7 +58,7 @@ SAVEHIST=10000
 HISTFILE=~/.zsh_history
 
 # Added by LM Studio CLI (lms)
-path+=("/home/eddieg/.lmstudio/bin")
+path+=("$HOME/.lmstudio/bin")
 # End of LM Studio CLI section
 
 

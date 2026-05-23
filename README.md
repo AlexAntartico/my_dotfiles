@@ -9,12 +9,13 @@ my_dotfiles/
 ├── current/           Active CachyOS setup — symlinked into $HOME
 │   ├── .zshrc
 │   ├── .tmux.conf
-│   ├── .config/
-│   │   ├── alacritty/
-│   │   ├── starship.toml
-│   │   └── zsh/cachyos-config.zsh   (local override of /usr/share/.../cachyos-config.zsh)
-│   ├── install.zsh    Run this to set up symlinks
-│   └── README.md
+│   └── .config/
+│       ├── alacritty/
+│       │   ├── alacritty.toml
+│       │   └── themes/
+│       │       └── nord.toml
+│       ├── starship.toml
+│       └── zsh/cachyos-config.zsh   (local override of /usr/share/.../cachyos-config.zsh)
 │
 ├── shared/            Cross-distro configs (symlinked alongside current/)
 │   └── .vimrc
@@ -65,8 +66,17 @@ This is two files by design, not by accident.
 
 `scripts/dotfiles_to_repo.sh` — Older copy-based backup script. Superseded by the symlink approach in `install.zsh` but kept around in case it's useful on a machine where symlinks aren't viable.
 
+## Changelog
+
+### 2026-05-22
+- **Alacritty theme refactor:** extracted inline Nord colors into `current/.config/alacritty/themes/nord.toml`; main config now imports the theme and owns only behavior (fonts, window, keybindings). Dropped `night-contrast.toml`.
+- **`.zshrc`:** fixed hardcoded `/home/eddieg/` path for LM Studio bin to use `$HOME`.
+- **`alacritty.toml`:** fixed `font.bold_italic` family from `monospace` to `JetBrainsMono Nerd Font`.
+- **Repo hygiene:** added top-level `.gitignore` (covers `*.bak`, OS files); removed `migrate.sh` (one-time migration already completed); fixed duplicate `.claude/` entry in `current/.gitignore`.
+
 ## Notes
 
 - The `current/` files assume CachyOS packages are installed (`starship`, `zoxide`, `lsd`, `btop`, `fzf`, `tmux`, `zsh-syntax-highlighting`, `zsh-autosuggestions`, `pkgfile`, `oh-my-zsh-git`). Most of these are in the CachyOS default repos.
 - For Vim plugins, install vim-plug from <https://github.com/junegunn/vim-plug>, then run `:PlugInstall` inside Vim.
+- For tmux plugins, install TPM from <https://github.com/tmux-plugins/tpm>, then press `prefix + I` inside a tmux session to fetch the plugins (`tmux-sensible`, `tmux-resurrect`, `tmux-continuum`).
 - The `.gitignore` in `current/` excludes shell history, `.ssh/`, `.gnupg/`, and `.cache/` — review before committing if you add new files.
