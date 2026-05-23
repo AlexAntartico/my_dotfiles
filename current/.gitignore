@@ -18,3 +18,8 @@ Thumbs.db
 .gnupg/
 .cache/
 .local/share/
+
+# Claude Code local settings — machine-specific
+.claude/
+# Claude Code local settings — machine-specific
+.claude/
